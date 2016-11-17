@@ -41,5 +41,5 @@ This project is a game on the Kinect. The purpose of this game is to help a pers
 </div>
 
 <div>
-  <h3><strong>Presentation:</strong>December 8th, 2016</h3>
+  <h3><strong>Presentation:</strong> December 8th, 2016</h3>
 </div>
