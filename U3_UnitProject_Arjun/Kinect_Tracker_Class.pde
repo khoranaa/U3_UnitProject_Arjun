@@ -1,7 +1,7 @@
 class KinectTracker 
 {
 
-  int threshold = 745;
+  int threshold = 750;
 
   PVector loc;
 
@@ -104,3 +104,5 @@ class KinectTracker
     threshold =  t;
   }
 }
+
+//convert pixels' depth transparency if not in threshold
