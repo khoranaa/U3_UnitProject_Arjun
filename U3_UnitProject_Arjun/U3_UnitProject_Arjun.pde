@@ -3,23 +3,24 @@ import org.openkinect.freenect2.*;
 import org.openkinect.processing.*;
 import org.openkinect.tests.*;
 PImage ch;
+PImage h;
 KinectTracker tracker;
 Kinect kinect;
 Picture p;
-Action a;
+Pic pp;
 
 void setup() 
 {
   size(640, 520);
-  //fullScreen();
   kinect = new Kinect(this);
   tracker = new KinectTracker();
   p = new Picture();
-  a = new Action();
+  pp = new Pic();
   kinect.getDepthImage();
   kinect.getRawDepth();
   kinect.getVideoImage();
   ch = loadImage("Ch.png");
+  h = loadImage("h.png");
 }
 
 void draw() 
@@ -28,7 +29,7 @@ void draw()
   tracker.track();
   tracker.display();
   p.draw();
-  a.update();
+  pp.update();
 
   //PVector v1 = new PVector(mouseX, mouseY);
   PVector v1 = tracker.getPos();
@@ -41,7 +42,7 @@ void draw()
   fill(255, 0, 0);
   noStroke();
   //ellipse(v2.x, v2.y, 20, 20);
-  image(ch, v2.x, v2.y);
+  image(ch, v2.x, v2.y + height/3);
 
   int t = tracker.getThreshold();
   fill(255);

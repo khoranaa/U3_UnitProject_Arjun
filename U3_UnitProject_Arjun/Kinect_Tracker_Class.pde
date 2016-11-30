@@ -1,7 +1,7 @@
 class KinectTracker 
 {
 
-  int threshold = 750;
+  int threshold = 900;
 
   PVector loc;
 
@@ -76,7 +76,7 @@ class KinectTracker
     // A lot of this is redundant, but this is just for demonstration purposes
     display.loadPixels();
     for (int x = 0; x < kinect.width; x++) {
-      for (int y = 0; y < kinect.height; y++) {
+      for (int y = 0; y < kinect.height/2; y++) {
 
         int offset = x + y * kinect.width;
         // Raw depth
