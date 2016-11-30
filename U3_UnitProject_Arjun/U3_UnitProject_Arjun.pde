@@ -3,11 +3,9 @@ import org.openkinect.freenect2.*;
 import org.openkinect.processing.*;
 import org.openkinect.tests.*;
 PImage ch;
-PImage h;
 KinectTracker tracker;
 Kinect kinect;
 Picture p;
-Pic pp;
 
 void setup() 
 {
@@ -15,12 +13,10 @@ void setup()
   kinect = new Kinect(this);
   tracker = new KinectTracker();
   p = new Picture();
-  pp = new Pic();
   kinect.getDepthImage();
   kinect.getRawDepth();
   kinect.getVideoImage();
   ch = loadImage("Ch.png");
-  h = loadImage("h.png");
 }
 
 void draw() 
