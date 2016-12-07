@@ -27,6 +27,7 @@ This project is a game on the Kinect. The purpose of this game is to help a pers
      <li>Get my Average Point Tracking solid so that the player can be tracked.</li>
      <li>Create Backgrounds and Characters for each component of my project.</li>
      <li>Learn How to Make The Backgrounds and Characters I want and put it into the code.</li>
+     <strong>Change: I had to make my code a game because when using the Average Point Tracking, it can only track some sort of movement                      when running and jumping only.</strong>
   </ul>
 </p> 
 
