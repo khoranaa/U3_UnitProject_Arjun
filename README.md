@@ -44,3 +44,9 @@ This project is a game on the Kinect. The purpose of this game is to help a pers
 <div>
   <h3><strong>Presentation:</strong> December 8th, 2016</h3>
 </div>
+
+<h1>Screenshots</h1>
+<img src="http://imgur.com/a/DfLR1" title="source: imgur.com" /></a>
+<h2>Picture of Character</h2>
+<img src="http://imgur.com/a/CVAIR" title="source: imgur.com" /></a>
+<h2>Main Picture and Background Setup of Actual Game</h2>
