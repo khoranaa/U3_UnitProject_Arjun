@@ -1,18 +1,18 @@
-class KinectTracker 
-{
+class KinectTracker  //all data in the Kinect Tracker class
+{ 
 
-  int threshold = 900;
+  int threshold = 900; //Starting original threshold
 
-  PVector loc;
+  PVector loc; //original location of Average point tracker
 
-  PVector lerpedLoc;
-
-  int[] depth;
+  PVector lerpedLoc; //changing location of the Average point tracker through movment 
+                     //over time
+  int[] depth; //array of depth
   
-  PImage display;
+  PImage display; //assigning the display of the image
    
-  KinectTracker() 
-  {
+  KinectTracker() //assigning all the functions of how the image and the Average Point
+  {               //Tracking
     kinect.initDepth();
     kinect.enableMirror(true);
     display = createImage(kinect.width, kinect.height, RGB);
@@ -20,9 +20,9 @@ class KinectTracker
     lerpedLoc = new PVector(0, 0);
   }
 
-  void track() 
+  void track() //function of how the Average Point Tracker works
   {
-    depth = kinect.getRawDepth();
+    depth = kinect.getRawDepth(); //telling the tracker to get the depth imaage
 
     if (depth == null) return;
 
@@ -65,7 +65,7 @@ class KinectTracker
     return loc;
   }
 
-  void display() 
+  void display() //showing the functions in how the display would work
   {
     PImage img = kinect.getDepthImage();
 
@@ -90,8 +90,8 @@ class KinectTracker
         }
       }
     }
-    display.updatePixels();
-
+    display.updatePixels(); //telling the pixels to be where they need to be in order to
+                            //get the depth image
     // Draw the image
     image(display, 0, 0);
   }
