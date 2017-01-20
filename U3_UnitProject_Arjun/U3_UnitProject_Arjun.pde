@@ -10,65 +10,45 @@ import org.openkinect.tests.*;
 PImage ch; //Image of character 
 KinectTracker tracker; //Classes (next 3 lines)
 Kinect kinect;
-Picture p;
+Background b;
 float lines[] = {width, width/0.5}; //array of hurdles 
 float y; //variables
 float x;
 int score; //variable for scores
+Player p;
+PVector trackerPos = new PVector(0,0);
 
 void setup() 
 {
   size(640, 520);
   kinect = new Kinect(this); //assigning classes
   tracker = new KinectTracker();
-  p = new Picture();
+  b = new Background();
+  p = new Player(ch);
   kinect.getDepthImage(); //getting the Kinect to get the proper image
   kinect.getRawDepth(); //getting the Kinect to get a depth image
   kinect.getVideoImage(); //getting the Kinect to get a main RGB real time image
   ch = loadImage("Ch.png"); //loading the image of the character
+  
+  imageMode(CENTER);
 }
 
 void draw() 
 {
   background(255); //drawing background
   tracker.track();
-  p.draw();
-
-  PVector v1 = tracker.getPos(); //drawing main and original position of Average Point
-  fill(0, 255, 0);               //tracker
-  noStroke();
-  ellipse(v1.x, v1.y, 20, 20);
+  b.Draw();
+  p.Update();
+  p.Draw();
 
 
-  PVector v2 = tracker.getLerpedPos(); //drawing average changed positions over time 
+  PVector trackerPos = tracker.getLerpedPos(); //drawing average changed positions over time 
   fill(255, 0, 0);                     //in moving images, such as people moving, or
-  noStroke();                          //anything causing movmement
-  image(ch, v2.x, v2.y + height/2.5);
- 
-  int t = tracker.getThreshold(); //drawing the threshold (the thing that decides how 
-  fill(255);                      //much of the video image will be tracked with the 
-  textSize(12);                   //Average point tracking)
-  text("threshold: " + t + "    " +  "framerate: " + int(frameRate) + "    " + 
-    "UP increase threshold, DOWN decrease threshold", width*0.01, height*0.95);
-    
-  if(t < 900) //running upwards function if threshold is 900
+  noStroke(); //anything causing movmement
+  
+  if(millis() < 4000)
   {
-    y = v2.y;
-    image(ch, v2.x, y + height/2.5);
-    y = height/2.5 - 0.25;
-  }
-  
-  y = v2.y;
-  image(ch, v2.x, y + height/2.5); //assigning the image
-  
-  if(y < height/2.45) //running downwards function if height is less than a certain 
-  {                   //amount
-    y = height/2.45 - 0.25;
-  }    
-  
-  if((y < height/2) || (y > height/2.5)) //jumping function if character reaches a 
-  {                                      //certain point
-    y = height/2 - 3;
+    p.SetStartY(trackerPos.y);
   }
   
   if(collision()) //showing the game over and restart if character touches the hurdle
@@ -145,22 +125,3 @@ void draw()
         return returnValue;
       }
     }
-
-
-void keyPressed() 
-{
-  int t = tracker.getThreshold(); //settings the change the threshold of the Average 
-  if (key == CODED)               //Point Tracker
-  {
-    if (keyCode == UP) 
-    {
-      t+=5;
-      tracker.setThreshold(t);
-    } 
-    else  if (keyCode == DOWN) 
-    {
-      t-=5;
-      tracker.setThreshold(t);
-    }
-  }
-}
