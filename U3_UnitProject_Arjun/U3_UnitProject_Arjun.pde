@@ -15,6 +15,7 @@ float lines[] = {width, width/0.5}; //array of hurdles
 float y; //variables
 float x;
 int score; //variable for scores
+int gravity = 10;
 Player p;
 PVector trackerPos = new PVector(0,0);
 
@@ -40,6 +41,7 @@ void draw()
   b.Draw();
   p.Update();
   p.Draw();
+  p.Jump();
 
 
   PVector trackerPos = tracker.getLerpedPos(); //drawing average changed positions over time 

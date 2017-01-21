@@ -4,8 +4,10 @@ class Player
   float _x;
   float _y;
   float _startY;
+  float timeDelta;
   boolean _canJump;
   int jumpOffset;
+  int yForce;
   
   Player(PImage img)
   {
@@ -25,6 +27,19 @@ class Player
     if(_canJump && trackerPos.y + jumpOffset < _startY)
     {
       println("Jumping");
+      p.Jump();
+    }
+    
+    if(_y < _startY)
+    {
+      int gravity = 10;
+      _y += yForce * timeDelta;
+      yForce += gravity * timeDelta;
+    }
+    else
+    {
+      _y = _startY;
+      _canJump = true;
     }
   }
   
@@ -36,5 +51,13 @@ class Player
   void SetStartY(float y)
   {
     _startY = y;
+  }
+  
+  public void Jump()
+  {
+    timeDelta = 1.0/frameRate;
+    yForce = -60;
+    _y+= yForce*timeDelta;
+    _canJump = false;
   }
 }
