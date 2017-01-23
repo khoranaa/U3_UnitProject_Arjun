@@ -25,11 +25,11 @@ void setup()
   kinect = new Kinect(this); //assigning classes
   tracker = new KinectTracker();
   b = new Background();
+  ch = loadImage("Ch.png");
   p = new Player(ch);
   kinect.getDepthImage(); //getting the Kinect to get the proper image
   kinect.getRawDepth(); //getting the Kinect to get a depth image
-  kinect.getVideoImage(); //getting the Kinect to get a main RGB real time image
-  ch = loadImage("Ch.png"); //loading the image of the character
+  kinect.getVideoImage(); //getting the Kinect to get a main RGB real time image //loading the image of the character
   
   imageMode(CENTER);
 }
@@ -41,7 +41,7 @@ void draw()
   b.Draw();
   p.Update();
   p.Draw();
-  p.Jump();
+  //p.Jump();
 
 
   PVector trackerPos = tracker.getLerpedPos(); //drawing average changed positions over time 
@@ -56,7 +56,6 @@ void draw()
   if(collision()) //showing the game over and restart if character touches the hurdle
     {
       score = 0;
-      delay(3000);
       
       lines[0] = width - 1;
       lines[1] = width/0.5 - 1;
